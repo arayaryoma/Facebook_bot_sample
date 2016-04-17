@@ -1,8 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var request = require('request');
 var app = express();
 
 app.use(bodyParser());
+
 app.set('port', process.env.PORT || 9000)
 
 app.get('/test', function(req, res) {
