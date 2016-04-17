@@ -6,10 +6,9 @@ app.get('/test', function(req, res) {
     res.send('Hello');
 });
 
-var token = "CAADFDsM264QBAFDTsDgdVigMynMn3uJDXPBRfE0L3z1mTHAUyfFaVn7U9UfKx7xO38wd54PKzZBIkJOzScn8GdUnsCNmAYiT1ZALZA2ogf3Ij0UMt0QISyBDdSQbPYH00bcedJ80QI5mNkYavnHXS22ZB20kIc6o9VyaLZApQJP2fdQBIeuVSBZBNbVvJeX2s61EKdY6CIWgZDZD";
 
 app.get('/', function (req, res) {
-  if (req.query['hub.verify_token'] === token) {
+  if (req.query['hub.verify_token'] === 'allajah_is_hungry') {
     res.send(req.query['hub.challenge']);
   }
   res.send('Error, wrong validation token');
@@ -22,11 +21,13 @@ app.post('/', function (req, res) {
     sender = event.sender.id;
     if (event.message && event.message.text) {
       text = event.message.text;
-      sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
+      //sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
     }
   }
   res.sendStatus(200);
 });
+
+var token = "";
 
 function sendTextMessage(sender, text) {
   messageData = {
