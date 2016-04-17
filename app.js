@@ -1,5 +1,8 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+
+app.use(bodyParser());
 app.set('port', process.env.PORT || 9000)
 
 app.get('/test', function(req, res) {
@@ -15,8 +18,8 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    console.log(req)
-  messaging_events = req.body.entry[0].messaging;
+    console.log(req.body);
+    messaging_events = req.body.entry[0].messaging;
   for (i = 0; i < messaging_events.length; i++) {
     event = req.body.entry[0].messaging[i];
     sender = event.sender.id;
