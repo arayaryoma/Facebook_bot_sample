@@ -8,12 +8,13 @@ app.use(bodyParser());
 app.set('port', process.env.PORT || 9000)
 
 app.get('/test', function(req, res) {
+    console.log(process.env.ACCESS_TOKEN);
     res.send('Hello');
 });
 
 
 app.get('/', function (req, res) {
-  if (req.query['hub.verify_token'] === 'allajah_is_hungry') {
+  if (req.query['hub.verify_token'] === process.env.VERIFY_TOKEN) {
     res.send(req.query['hub.challenge']);
   }
   res.send('Error, wrong validation token');
@@ -33,7 +34,7 @@ app.post('/', function (req, res) {
   res.sendStatus(200);
 });
 
-var token = "CAADFDsM264QBAAUw6ZBbRhFpn7nruTvzl5vauWl3xYlZCQ5E4bNQvsi2yZA8IpqKCSFV4APOUaeZCZAKCLYCRMsrcbsO7NTy0DWcT0n2WTfZAjNcCD4IdZA2uvgh0e1bahW5VZCjZCO2Q7m934S6STety18AzSRZCdxGMkKmcmjfxWimG5Bc3b2ZBZC1r3LEOxg9aoqCNWuoRLQrdQZDZD";
+var token = process.env.ACCESS_TOKEN;
 
 function sendTextMessage(sender, text) {
     console.log(sender);
